@@ -67,15 +67,15 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.DJETTKA_GITHUB_TOKEN }}
 
       # Login against DockerHub registry except on PR
       - name: Log in to DockerHub
         if: github.event_name != 'pull_request'
         uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446
         with:
-          username: ${{ secrets.BWBOHL_DOCKERHUB_USERNAME }}
-          password: ${{ secrets.BWBOHL_DOCKERHUB_TOKEN }}
+          username: ${{ secrets.DJETTKA_DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DJETTKA_DOCKERHUB_TOKEN }}
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
@@ -85,7 +85,7 @@ jobs:
         with:
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-            ${{ secrets.BWBOHL_DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_IMAGE_NAME }}
+            ${{ secrets.DJETTKA_DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_IMAGE_NAME }}
           flavor: |
             latest=${{ github.ref == 'refs/heads/main' }}
 

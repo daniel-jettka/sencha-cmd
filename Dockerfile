@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         sudo \
         wget \
+        git \
         unzip \
 		libfreetype6 \
 		fontconfig \
